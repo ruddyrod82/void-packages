@@ -1,0 +1,18 @@
+# Template file for 'hyprlock'
+pkgname=hyprlock
+version=0.3.0
+revision=1
+build_style=cmake
+hostmakedepends="cmake pkg-config"
+makedepends="cairo-devel hyprlang libdrm-devel libxkbcommon-devel MesaLib-devel pango-devel pam-devel wayland-devel wayland-protocols"
+short_desc="Hyprland's GPU-accelerated screen locking utility"
+maintainer="Makrennel <makrommel@protonmail.ch>"
+license="BSD-3-Clause"
+homepage="https://github.com/hyprwm/${pkgname}"
+changelog="https://github.com/hyprwm/${pkgname}/releases"
+distfiles="https://github.com/hyprwm/${pkgname}/archive/refs/tags/v${version}.tar.gz"
+checksum="@9eb86937ceb29a748db7c2f5bdb1072626f4e9a26ae2d255279ecd5c86262d54"
+
+do_check() {
+	install -Dm0644 /builddir/${pkgname}-${version}/pam/hyprlock /etc/pam.d/hyprlock
+}
