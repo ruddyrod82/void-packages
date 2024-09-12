@@ -1,0 +1,26 @@
+# Template file for 'blueberry-wayland'
+pkgname=blueberry-wayland
+_pkgname=blueberry
+version=1.4.8
+revision=1
+build_style=meta
+hostmakedepends="gettext"
+depends="bluez gnome-bluetooth python3-dbus python3-gobject python3-setproctitle rfkill xapps"
+short_desc="Bluetooth configuration tool - Patched systray for Wayland support"
+maintainer="Rodney Richard <ruddyrod82@gmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/linuxmint/blueberry"
+distfiles="https://github.com/linuxmint/blueberry/archive/$version/$pkgname-$version.tar.gz"
+checksum=37a5b0bc3c7cbccee625209b9196a2e2966396cfe5c7652318559642fb6a7a32
+
+do_patch() {
+  patch --forward --strip=1 --input="./wayland-patch"
+}
+
+do_build() {
+  make
+}
+
+do_install() {
+  cp -r usr /  
+}
